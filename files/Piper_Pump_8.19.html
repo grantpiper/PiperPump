@@ -321,7 +321,7 @@ main.dayswap{animation:mainFade 220ms var(--ease-out)}
   color:rgba(10,10,10,.5);margin-bottom:8px}
 .ovgear .gpill{display:inline-block;background:rgba(10,10,10,.08);border:1px solid rgba(10,10,10,.16);
   color:var(--ink);font:700 12px/1 Inter,sans-serif;padding:7px 12px;border-radius:999px;margin:0 6px 6px 0}
-.ovbegin{margin-top:auto;padding-top:22px;display:flex;align-items:center;justify-content:center;gap:8px;
+.ovbegin{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;border:none;background:var(--ink);color:var(--signal);padding:17px;border-radius:999px;
   cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
   text-transform:uppercase;letter-spacing:.04em;transition:transform 120ms var(--ease-out)}
@@ -1599,6 +1599,11 @@ function buildOverviewCard(day){
       '<div><div class="k">Movements</div><div class="v">'+day.ex.length+'</div></div>'+
     '</div>';
 
+  const begin=document.createElement('button'); begin.type='button'; begin.className='ovbegin';
+  begin.textContent='Begin workout';
+  begin.onclick=()=>goTo(1);
+  wrap.appendChild(begin);
+
   const gear=dayGear(day);
   if(gear.length){
     const gwrap=document.createElement('div'); gwrap.className='ovgear';
@@ -1614,11 +1619,6 @@ function buildOverviewCard(day){
     nudge.innerHTML='<b>Last time — '+rdef.short+'.</b> Consider '+rdef.note+' today.';
     wrap.appendChild(nudge);
   }
-
-  const begin=document.createElement('button'); begin.type='button'; begin.className='ovbegin';
-  begin.textContent='Begin workout';
-  begin.onclick=()=>goTo(1);
-  wrap.appendChild(begin);
 
   c.appendChild(wrap);
   return c;
