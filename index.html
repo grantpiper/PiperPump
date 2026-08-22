@@ -317,10 +317,19 @@ main.dayswap{animation:mainFade 220ms var(--ease-out)}
 .ovmeta .k{font:800 9.5px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,10,10,.5)}
 .ovmeta .v{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;margin-top:4px}
 .ovgear{margin-top:18px}
-.ovgear .gk{display:block;font:800 9.5px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;
+.ovgear .gk,.ovmuscle .gk{display:block;font:800 9.5px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;
   color:rgba(10,10,10,.5);margin-bottom:8px}
 .ovgear .gpill{display:inline-block;background:rgba(10,10,10,.08);border:1px solid rgba(10,10,10,.16);
   color:var(--ink);font:700 12px/1 Inter,sans-serif;padding:7px 12px;border-radius:999px;margin:0 6px 6px 0}
+.ovmuscle{margin-top:18px}
+.musclefigs{display:flex;gap:18px}
+.musclefig{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px}
+.musclefig svg{width:52px;height:96px}
+.musclefig span{font:700 9px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(10,10,10,.45)}
+.mlegends{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mlegend{font:700 11px/1 Inter,sans-serif;padding:6px 10px;border-radius:999px;
+  background:rgba(10,10,10,.08);color:rgba(10,10,10,.55)}
+.mlegend.primary{background:var(--ink);color:var(--signal)}
 .ovbegin{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;border:none;background:var(--ink);color:var(--signal);padding:17px;border-radius:999px;
   cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
@@ -1362,6 +1371,59 @@ function dayGear(day){
   });
   return seen;
 }
+
+/* muscles worked — keyed by weekday index (0=Mon..4=Fri), since the day's
+   movement pattern (squat/horizontal push-pull/engine/hinge/vertical push-pull)
+   is consistent across all three week variants even though exercises rotate. */
+const MUSCLE_MAP=[
+  {primary:['quads','glutes'],secondary:['core','calves']},        // Mon — Lower A / Squat
+  {primary:['chest','triceps'],secondary:['shoulders','lats','biceps']}, // Tue — Upper A / Horizontal
+  {primary:['core'],secondary:['glutes','shoulders','calves']},    // Wed — Engine + Core
+  {primary:['glutes','hamstrings'],secondary:['lowerback','core']},// Thu — Lower B / Hinge
+  {primary:['shoulders','lats','biceps'],secondary:['triceps','core']} // Fri — Upper B / Vertical
+];
+const MUSCLE_LABEL={quads:'Quads',glutes:'Glutes',hamstrings:'Hamstrings',calves:'Calves',
+  core:'Core',chest:'Chest',shoulders:'Shoulders',lats:'Back',lowerback:'Lower back',
+  biceps:'Biceps',triceps:'Triceps'};
+// region shapes on a shared 100x184 silhouette, front view and back view differ
+// mainly in which regions read as "the same muscle" (e.g. chest vs lats occupy
+// the same torso rect on their respective views).
+function muscleRegion(key,fill){
+  const R={
+    shoulders:'<circle cx="26" cy="40" r="7.5"/><circle cx="74" cy="40" r="7.5"/>',
+    chest:'<rect x="33" y="40" width="34" height="17" rx="7"/>',
+    lats:'<rect x="32" y="40" width="36" height="24" rx="8"/>',
+    biceps:'<rect x="16" y="46" width="10" height="24" rx="5"/><rect x="74" y="46" width="10" height="24" rx="5"/>',
+    triceps:'<rect x="16" y="46" width="10" height="24" rx="5"/><rect x="74" y="46" width="10" height="24" rx="5"/>',
+    core:'<rect x="37" y="59" width="26" height="26" rx="8"/>',
+    lowerback:'<rect x="37" y="65" width="26" height="20" rx="8"/>',
+    glutes:'<rect x="34" y="86" width="32" height="16" rx="9"/>',
+    quads:'<rect x="34" y="100" width="14" height="38" rx="7"/><rect x="52" y="100" width="14" height="38" rx="7"/>',
+    hamstrings:'<rect x="34" y="102" width="14" height="36" rx="7"/><rect x="52" y="102" width="14" height="36" rx="7"/>',
+    calves:'<rect x="35" y="142" width="12" height="30" rx="6"/><rect x="53" y="142" width="12" height="30" rx="6"/>'
+  };
+  return '<g fill="'+fill+'">'+(R[key]||'')+'</g>';
+}
+const SILHOUETTE='<circle cx="50" cy="16" r="11"/>'+
+  '<rect x="44" y="25" width="12" height="9" rx="3"/>'+
+  '<path d="M30 34h40c3 0 5 3 5 7l3 32c0 4-3 6-6 6l-4-24-2 27c1 3 1 40 1 40l-6 46h-11l-3-56-3 56h-11l-6-46s0-37 1-40l-2-27-4 24c-3 0-6-2-6-6l3-32c0-4 2-7 5-7z"/>';
+function muscleDiagram(dayIdx){
+  const m=MUSCLE_MAP[dayIdx]||MUSCLE_MAP[0];
+  const build=()=>{
+    let s='';
+    m.secondary.forEach(k=>s+=muscleRegion(k,'rgba(10,10,10,.28)'));
+    m.primary.forEach(k=>s+=muscleRegion(k,'var(--ink)'));
+    return s;
+  };
+  const fig=(label)=>'<div class="musclefig">'+
+    '<svg viewBox="0 0 100 184"><g fill="rgba(10,10,10,.12)">'+SILHOUETTE+'</g>'+build()+'</svg>'+
+    '<span>'+label+'</span></div>';
+  const all=[...m.primary,...m.secondary];
+  const legend=all.map((k,i)=>'<span class="mlegend'+(i<m.primary.length?' primary':'')+'">'+MUSCLE_LABEL[k]+'</span>').join('');
+  return '<div class="ovmuscle"><span class="gk">Muscles worked</span>'+
+    '<div class="musclefigs">'+fig('Front')+fig('Back')+'</div>'+
+    '<div class="mlegends">'+legend+'</div></div>';
+}
 const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
 
 /* ═══════ STATE ═══════ */
@@ -1603,6 +1665,10 @@ function buildOverviewCard(day){
   begin.textContent='Begin workout';
   begin.onclick=()=>goTo(1);
   wrap.appendChild(begin);
+
+  const mwrap=document.createElement('div');
+  mwrap.innerHTML=muscleDiagram(S.day);
+  wrap.appendChild(mwrap.firstElementChild);
 
   const gear=dayGear(day);
   if(gear.length){
