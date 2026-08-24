@@ -65,13 +65,22 @@ const PROGRAM=WEEKS[(isoWeekNumber(new Date())-1)%WEEKS.length];
 ```
 - **Hard constraint, do not break it:** every week variant must have the exact
   same number of exercises for a given day-of-week slot (currently
-  Mon=6, Tue=7, Wed=7, Thu=6, Fri=7, Sat=5, Sun=4 — consistent across all three
+  Mon=6, Tue=7, Wed=7, Thu=6, Fri=8, Sat=5, Sun=4 — consistent across all three
   weeks). `sessionDoneOnDate()` checks completion by comparing checked count
   against `PROGRAM[dayIdx].ex.length` — if that length can differ depending on
   which week is live, historical completion records silently become wrong for
   dates logged under a different week variant. If you need to add/remove an
   exercise, change the count in **all three weeks** for that day, or accept
   (and tell the user) that past records for that day will be affected.
+- Friday (Upper B) went from 7 to 8 exercises in a later session — a two-arm
+  dumbbell pullover (`P.pulloverTop`/`P.pulloverStretch`, lying on the bench,
+  `rot:-90`) was added as the closing exercise. Every other Friday movement is
+  horizontal shoulder adduction (presses, rows, face pulls); nothing hit the
+  lats through shoulder extension after band lat pulldown was removed earlier
+  for lack of an anchor point. Pullover needs no anchor and reuses the
+  adjustable dumbbells + bench already in the program. Sets/reps/load scale
+  per week the same way the rest of Friday's accessories do (3x12 @ ~35 lb
+  Hypertrophy, 4x8 @ ~45 lb heavy Strength, 3x18 @ ~25 lb Metabolic).
 - Wednesday's kettlebell complex deliberately avoids swings — it sits ~24h
   before Thursday's heavy deadlift/snatch day, and swings would overlap the
   same posterior-chain recovery window (this was a real fix, not a style

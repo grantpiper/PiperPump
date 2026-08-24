@@ -808,6 +808,8 @@ const P={
  plank:{rot:-90,thigh:2,shin:2,torso:-4,ua:6,fa:74,head:-14,f1:-58,f2:-58},
  benchTop:{rot:-90,thigh:-46,shin:88,torso:0,ua:0,fa:0,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
  benchBtm:{rot:-90,thigh:-46,shin:88,torso:0,ua:44,fa:-58,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
+ pulloverTop:{rot:-90,thigh:-46,shin:88,torso:0,ua:-90,fa:-90,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
+ pulloverStretch:{rot:-90,thigh:-46,shin:88,torso:0,ua:-135,fa:-108,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
  htTop:{rot:-62,thigh:-34,shin:74,torso:6,ua:-30,fa:-34,f1:0,f2:0,load:'bar'},
  htBtm:{rot:-86,thigh:-52,shin:80,torso:2,ua:-24,fa:-28,f1:0,f2:0,load:'bar'},
  rollOut:{rot:-84,thigh:-6,shin:8,torso:-2,ua:4,fa:2,head:-18,f1:-56,f2:-56},
@@ -1010,7 +1012,11 @@ const WEEK_A=[
   {name:'Push-up finisher',kit:'Bodyweight',sets:2,work:60,rest:90,
    reps:'Max reps',load:'Bodyweight',
    cue:'To technical failure — end the set when the hips start to sag, not when the arms give out.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:3,work:45,rest:75,
+   reps:'12 per set',load:'35 lb (one dumbbell, both hands)',
+   cue:'Hips stay low on the bench, ribs stay down — the stretch comes from the shoulders, not an arched back.',
+   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Hypertrophy',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1214,7 +1220,11 @@ const WEEK_B=[
   {name:'Push-up finisher',kit:'Bodyweight, weighted vest',sets:2,work:55,rest:90,
    reps:'Max reps, vest on',load:'Bodyweight + 10 lb vest',
    cue:'The vest turns this into real added load. End the set when the hips sag.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:4,work:35,rest:100,
+   reps:'8 per set, heavy',load:'45 lb (one dumbbell, both hands)',
+   cue:'Heavier this week, same control — the stretch stays smooth, don’t let the weight yank you into it.',
+   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Strength',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1418,7 +1428,11 @@ const WEEK_C=[
   {name:'Push-up finisher',kit:'Bodyweight',sets:3,work:50,rest:60,
    reps:'Max reps, shorter rest between sets',load:'Bodyweight',
    cue:'Three rounds this week instead of two — end each set when the hips start to sag.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:3,work:55,rest:45,
+   reps:'18 per set',load:'25 lb (one dumbbell, both hands)',
+   cue:'Lighter weight, real burn through the lats by the last few reps — keep the tempo smooth, not rushed.',
+   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Metabolic',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1871,6 +1885,7 @@ const FITBOD={
   'Medicine ball rotational twist':'medicine-ball-russian-twist',
   'Medicine ball thruster':'dumbbell-thruster',
   'Push-up finisher':'push-up',
+  'Two-arm dumbbell pullover':'dumbbell-pullover',
   'Single-arm Romanian deadlift':'single-leg-romanian-deadlift',
   'Standing calf raise':'standing-dumbbell-calf-raise',
   'Standing overhead press':'standing-dumbbell-shoulder-press',
