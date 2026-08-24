@@ -316,6 +316,10 @@ main.dayswap{animation:mainFade 220ms var(--ease-out)}
 .ovmeta div{flex:1 1 0}
 .ovmeta .k{font:800 9.5px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,10,10,.5)}
 .ovmeta .v{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;margin-top:4px}
+.ovwatch{display:flex;align-items:center;justify-content:space-between;margin-top:14px;
+  background:rgba(10,10,10,.08);border:1px solid rgba(10,10,10,.16);border-radius:14px;padding:10px 14px}
+.ovwatch .wk{font:800 9.5px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(10,10,10,.55)}
+.ovwatch .wv{font:700 13px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--ink)}
 .ovgear{margin-top:18px}
 .ovgear .gk,.ovmuscle .gk{display:block;font:800 9.5px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;
   color:rgba(10,10,10,.5);margin-bottom:8px}
@@ -852,7 +856,7 @@ const P={
    touch light versus everything else. Every week keeps the same exercise COUNT per
    day so historical completion data stays valid regardless of which week was live. */
 const WEEK_A=[
-{d:'Mon',t:'Lower A',s:'Squat · Hypertrophy',
+{d:'Mon',t:'Lower A',s:'Squat · Hypertrophy',watchMode:'Functional Strength Training',
  note:'The heaviest knee-bend day, so it leads the week on fresh legs. Moderate reps this week, chasing muscle growth through volume rather than a single heavy top set.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -881,7 +885,7 @@ const WEEK_A=[
    cue:'Full stretch at the bottom, two-second squeeze at the top. Off a step if you have one.',
    frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
  ]},
-{d:'Tue',t:'Upper A',s:'Horizontal · Hypertrophy',
+{d:'Tue',t:'Upper A',s:'Horizontal · Hypertrophy',watchMode:'Traditional Strength Training',
  note:'Push, pull, and — new this rotation — a real vertical pull. Back volume was running a touch light against everything else, so the lat pulldown earns a permanent slot.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -914,7 +918,7 @@ const WEEK_A=[
    cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
    frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
  ]},
-{d:'Wed',t:'Engine + Core',s:'Low impact',
+{d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Sits between two lifting blocks by design. The complex leans on cleans and presses now, not swings — that keeps it from competing with Thursday\u2019s heavy hip-hinge work less than 24 hours later.',
  ex:[
   {name:'Treadmill incline walk',kit:'Treadmill + 10 lb vest',sets:1,work:720,rest:0,
@@ -946,7 +950,7 @@ const WEEK_A=[
    cue:'The one true rotation movement in the week — everything else trains resisting rotation, this one asks for it. Feet planted, rotate from the hips and ribs together, not just the arms.',
    frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
  ]},
-{d:'Thu',t:'Lower B',s:'Hinge · Hypertrophy',
+{d:'Thu',t:'Lower B',s:'Hinge · Hypertrophy',watchMode:'Functional Strength Training',
  note:'Posterior chain and single-leg work, now with real separation from Wednesday since the complex no longer leans on swings — a full 72 hours from Monday, and the tissue Wednesday touches is different from what this day asks of you.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -975,7 +979,7 @@ const WEEK_A=[
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
    front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]},
-{d:'Fri',t:'Upper B',s:'Vertical · Hypertrophy',
+{d:'Fri',t:'Upper B',s:'Vertical · Hypertrophy',watchMode:'Functional Strength Training',
  note:'Overhead and lat-dominant so it doesn\u2019t repeat Tuesday\u2019s pressing angle. Windmill and halo both live here — Wednesday\u2019s complex stays clean-and-press only so these two don\u2019t feel repeated mid-week.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -1007,11 +1011,56 @@ const WEEK_A=[
    reps:'Max reps',load:'Bodyweight',
    cue:'To technical failure — end the set when the hips start to sag, not when the arms give out.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+ ]},
+{d:'Sat',t:'Full Body Circuit',s:'Circuit · Hypertrophy',watchMode:'High Intensity Interval Training',
+ note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
+ ex:[
+  {name:'Weighted vest treadmill warm-up',kit:'Treadmill + weighted vest',sets:1,work:360,rest:0,
+   reps:'6 min continuous',load:'2.8 mph, flat, vest on',
+   cue:'Just a pulse-raiser before the circuit — flat grade, vest stays on the whole session.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:360,tlabel:'Warm-up'},
+  {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:40,rest:75,
+   reps:'10 per side',load:'25 lb, one hand',
+   cue:'Upper arm rests on the floor at the bottom — that is your depth stop.',
+   frames:[P.kbFloorLock,P.kbFloorChest],anim:1,labels:['Lockout','Floor']},
+  {name:'Medicine ball thruster',kit:'20 lb medicine ball',sets:3,work:45,rest:50,
+   reps:'12 per set',load:'20 lb ball',
+   cue:'Squat down with the ball racked at your chest, stand and press it overhead in one motion — quick pace, no pause at the top.',
+   frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:4,work:50,rest:60,
+   reps:'40 yd per side',load:'35 lb bell, one hand',
+   cue:'The exercise is refusing to bend sideways. If the torso leans, the weight is too heavy.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:45,rest:60,
+   reps:'12 per side',load:'20 lb ball',
+   cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+ ]},
+{d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
+ note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
+ ex:[
+  {name:'Easy treadmill walk',kit:'Treadmill',sets:1,work:600,rest:0,
+   reps:'10 min continuous',load:'2.5 mph, flat',
+   cue:'Conversational pace only — this is circulation, not conditioning.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:600,tlabel:'Easy walk'},
+  {name:'Band shoulder mobility',kit:'Light resistance band',sets:2,work:45,rest:20,
+   reps:'15 pull-aparts + 15 external rotations',load:'Light band',
+   cue:'Same drill as the lifting days — keeps the shoulders limber without adding fatigue.',
+   frames:[P.latBtm,P.latTop],anim:1,labels:['Set','Open'],timer:90,tlabel:'Mobility'},
+  {name:'Kettlebell halo',kit:'Adjustable kettlebell',sets:2,work:40,rest:30,
+   reps:'8 circles each direction',load:'15–20 lb, light',
+   cue:'Light bell, slow circles — this is mobility work, not a load day.',
+   frames:[P.haloFront,P.haloBack],anim:1,labels:['Front','Behind'],motion:'flow'},
+  {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
+   reps:'30s per side',load:'Bodyweight',
+   cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
  ]}
 ];
 
 const WEEK_B=[
-{d:'Mon',t:'Lower A',s:'Squat · Strength',
+{d:'Mon',t:'Lower A',s:'Squat · Strength',watchMode:'Functional Strength Training',
  note:'Heavier, lower reps this week. Honest caveat: a single 40 lb kettlebell caps how heavy a bilateral squat can really get without a rack — so this leans on the front-rack split squat, where single-leg loading makes even a moderate bell feel genuinely heavy.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -1040,7 +1089,7 @@ const WEEK_B=[
    cue:'Full stretch at the bottom, two-second squeeze at the top.',
    frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
  ]},
-{d:'Tue',t:'Upper A',s:'Horizontal · Strength',
+{d:'Tue',t:'Upper A',s:'Horizontal · Strength',watchMode:'Traditional Strength Training',
  note:'The row goes bilateral this week — both dumbbells at once lets you load past what a single kettlebell can offer, which is exactly what a strength-focused pulling day needs.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -1073,7 +1122,7 @@ const WEEK_B=[
    cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
    frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
  ]},
-{d:'Wed',t:'Engine + Core',s:'Low impact',
+{d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Lighter touch this week on purpose — the heavy lower and upper days need the recovery, so this is more genuine active recovery than a third hard session.',
  ex:[
   {name:'Treadmill incline walk',kit:'Treadmill + 10 lb vest',sets:1,work:600,rest:0,
@@ -1105,7 +1154,7 @@ const WEEK_B=[
    cue:'Heavier ball, fewer reps this week — same rule, rotate from the hips and ribs together.',
    frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
  ]},
-{d:'Thu',t:'Lower B',s:'Hinge · Strength',
+{d:'Thu',t:'Lower B',s:'Hinge · Strength',watchMode:'Functional Strength Training',
  note:'The real heavy day of this rotation. The Jayflex bar is what actually lets you load a true low-rep strength stimulus — this is the one lift each week worth loading past what dumbbells alone allow.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -1134,7 +1183,7 @@ const WEEK_B=[
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
    front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]},
-{d:'Fri',t:'Upper B',s:'Vertical · Strength',
+{d:'Fri',t:'Upper B',s:'Vertical · Strength',watchMode:'Functional Strength Training',
  note:'Overhead pressing gets the heavy treatment this week, same logic as Tuesday\u2019s bench — long rest, low reps, full effort on every set.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -1166,11 +1215,56 @@ const WEEK_B=[
    reps:'Max reps, vest on',load:'Bodyweight + 10 lb vest',
    cue:'The vest turns this into real added load. End the set when the hips sag.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+ ]},
+{d:'Sat',t:'Full Body Circuit',s:'Circuit · Strength',watchMode:'High Intensity Interval Training',
+ note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
+ ex:[
+  {name:'Weighted vest treadmill warm-up',kit:'Treadmill + weighted vest',sets:1,work:360,rest:0,
+   reps:'6 min continuous',load:'2.8 mph, flat, vest on',
+   cue:'Just a pulse-raiser before the circuit — flat grade, vest stays on the whole session.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:360,tlabel:'Warm-up'},
+  {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:36,rest:90,
+   reps:'8 per side, heavy',load:'35 lb, one hand',
+   cue:'Upper arm rests on the floor at the bottom — that is your depth stop.',
+   frames:[P.kbFloorLock,P.kbFloorChest],anim:1,labels:['Lockout','Floor']},
+  {name:'Medicine ball thruster',kit:'20 lb medicine ball',sets:3,work:40,rest:70,
+   reps:'8 per set, heavier ball',load:'30 lb ball',
+   cue:'Squat down with the ball racked at your chest, stand and press it overhead in one motion — quick pace, no pause at the top.',
+   frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:3,work:55,rest:75,
+   reps:'40 yd per side, heavier bell',load:'40 lb bell, one hand',
+   cue:'The exercise is refusing to bend sideways. If the torso leans, the weight is too heavy.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:40,rest:75,
+   reps:'10 per side, heavier',load:'30 lb ball',
+   cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+ ]},
+{d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
+ note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
+ ex:[
+  {name:'Easy treadmill walk',kit:'Treadmill',sets:1,work:600,rest:0,
+   reps:'10 min continuous',load:'2.5 mph, flat',
+   cue:'Conversational pace only — this is circulation, not conditioning.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:600,tlabel:'Easy walk'},
+  {name:'Band shoulder mobility',kit:'Light resistance band',sets:2,work:45,rest:20,
+   reps:'15 pull-aparts + 15 external rotations',load:'Light band',
+   cue:'Same drill as the lifting days — keeps the shoulders limber without adding fatigue.',
+   frames:[P.latBtm,P.latTop],anim:1,labels:['Set','Open'],timer:90,tlabel:'Mobility'},
+  {name:'Kettlebell halo',kit:'Adjustable kettlebell',sets:2,work:40,rest:30,
+   reps:'8 circles each direction',load:'15–20 lb, light',
+   cue:'Light bell, slow circles — this is mobility work, not a load day.',
+   frames:[P.haloFront,P.haloBack],anim:1,labels:['Front','Behind'],motion:'flow'},
+  {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
+   reps:'30s per side',load:'Bodyweight',
+   cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
  ]}
 ];
 
 const WEEK_C=[
-{d:'Mon',t:'Lower A',s:'Squat · Metabolic',
+{d:'Mon',t:'Lower A',s:'Squat · Metabolic',watchMode:'Functional Strength Training',
  note:'Higher reps, shorter rest, faster pace — this week trades absolute load for work density. Still the same movements, just a different kind of hard.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -1199,7 +1293,7 @@ const WEEK_C=[
    cue:'Squat down with the ball racked at your chest, stand and press it overhead in one motion. This is this week\u2019s full-body metabolic finisher for the day — quick pace, no pause at the top.',
    frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']}
  ]},
-{d:'Tue',t:'Upper A',s:'Horizontal · Metabolic',
+{d:'Tue',t:'Upper A',s:'Horizontal · Metabolic',watchMode:'Traditional Strength Training',
  note:'Higher reps and shorter rest throughout, with the curl-and-extension pair now a genuine short-rest superset — this day is about sustained effort, not single heavy sets.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -1232,7 +1326,7 @@ const WEEK_C=[
    cue:'A genuine superset this week — minimal rest between the two movements and between rounds.',
    frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
  ]},
-{d:'Wed',t:'Engine + Core',s:'Low impact',
+{d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'The most conditioning-forward version of this day — longer walk, more complex rounds, more intervals. Still nothing high-impact and nothing loading deep knee flexion.',
  ex:[
   {name:'Treadmill incline walk',kit:'Treadmill + 10 lb vest',sets:1,work:840,rest:0,
@@ -1264,7 +1358,7 @@ const WEEK_C=[
    cue:'Quick and continuous this week — still rotating from the hips and ribs together, not just the arms.',
    frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
  ]},
-{d:'Thu',t:'Lower B',s:'Hinge · Metabolic',
+{d:'Thu',t:'Lower B',s:'Hinge · Metabolic',watchMode:'Functional Strength Training',
  note:'Same movements as always, higher reps and faster pace this week — the posterior chain still gets a full recovery window from Wednesday\u2019s complex, which never touches swings.',
  ex:[
   {name:'Treadmill incline warm-up',kit:'Treadmill',sets:1,work:480,rest:0,
@@ -1293,7 +1387,7 @@ const WEEK_C=[
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
    front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]},
-{d:'Fri',t:'Upper B',s:'Vertical · Metabolic',
+{d:'Fri',t:'Upper B',s:'Vertical · Metabolic',watchMode:'Functional Strength Training',
  note:'The week closes with its highest-rep, shortest-rest upper session — good for the conditioning side of the goal, and two full days of real recovery sit between here and Monday\u2019s squats.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
@@ -1325,6 +1419,51 @@ const WEEK_C=[
    reps:'Max reps, shorter rest between sets',load:'Bodyweight',
    cue:'Three rounds this week instead of two — end each set when the hips start to sag.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+ ]},
+{d:'Sat',t:'Full Body Circuit',s:'Circuit · Metabolic',watchMode:'High Intensity Interval Training',
+ note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
+ ex:[
+  {name:'Weighted vest treadmill warm-up',kit:'Treadmill + weighted vest',sets:1,work:360,rest:0,
+   reps:'6 min continuous',load:'2.8 mph, flat, vest on',
+   cue:'Just a pulse-raiser before the circuit — flat grade, vest stays on the whole session.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:360,tlabel:'Warm-up'},
+  {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:45,rest:45,
+   reps:'15 per side',load:'20 lb, one hand',
+   cue:'Upper arm rests on the floor at the bottom — that is your depth stop.',
+   frames:[P.kbFloorLock,P.kbFloorChest],anim:1,labels:['Lockout','Floor']},
+  {name:'Medicine ball thruster',kit:'20 lb medicine ball',sets:4,work:40,rest:35,
+   reps:'15 per set, fast pace',load:'15 lb ball',
+   cue:'Squat down with the ball racked at your chest, stand and press it overhead in one motion — quick pace, no pause at the top.',
+   frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:5,work:40,rest:40,
+   reps:'40 yd per side, faster pace',load:'25–30 lb bell, one hand',
+   cue:'The exercise is refusing to bend sideways. If the torso leans, the weight is too heavy.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:4,work:35,rest:35,
+   reps:'15 per side, fast pace',load:'15 lb ball',
+   cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+ ]},
+{d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
+ note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
+ ex:[
+  {name:'Easy treadmill walk',kit:'Treadmill',sets:1,work:600,rest:0,
+   reps:'10 min continuous',load:'2.5 mph, flat',
+   cue:'Conversational pace only — this is circulation, not conditioning.',
+   frames:[P.walkA,P.walkB],anim:1,labels:['Stride'],timer:600,tlabel:'Easy walk'},
+  {name:'Band shoulder mobility',kit:'Light resistance band',sets:2,work:45,rest:20,
+   reps:'15 pull-aparts + 15 external rotations',load:'Light band',
+   cue:'Same drill as the lifting days — keeps the shoulders limber without adding fatigue.',
+   frames:[P.latBtm,P.latTop],anim:1,labels:['Set','Open'],timer:90,tlabel:'Mobility'},
+  {name:'Kettlebell halo',kit:'Adjustable kettlebell',sets:2,work:40,rest:30,
+   reps:'8 circles each direction',load:'15–20 lb, light',
+   cue:'Light bell, slow circles — this is mobility work, not a load day.',
+   frames:[P.haloFront,P.haloBack],anim:1,labels:['Front','Behind'],motion:'flow'},
+  {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
+   reps:'30s per side',load:'Bodyweight',
+   cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
  ]}
 ];
 
@@ -1349,7 +1488,9 @@ const FUEL=[
  ['Protein oats + banana','Turkey wrap, side of fruit','Steak, sweet potato, broccoli','Cottage cheese + honey'],
  ['Eggs, toast, avocado','Tuna + white bean salad','Chicken thighs, quinoa, roasted veg','Protein shake'],
  ['Protein oats + berries','Leftover chicken bowl','Ground beef tacos, black beans','Greek yogurt + almonds'],
- ['Omelette + fruit','Big salad with salmon','Whatever the family is having','—']
+ ['Omelette + fruit','Big salad with salmon','Whatever the family is having','—'],
+ ['Protein pancakes + fruit','Grilled chicken salad','Burgers on the grill, side salad','Whatever sounds good'],
+ ['Eggs + toast, easy morning','Leftovers, keep it simple','Whatever the family is having','—']
 ];
 
 function sessionMins(day){
@@ -1372,15 +1513,18 @@ function dayGear(day){
   return seen;
 }
 
-/* muscles worked — keyed by weekday index (0=Mon..4=Fri), since the day's
-   movement pattern (squat/horizontal push-pull/engine/hinge/vertical push-pull)
-   is consistent across all three week variants even though exercises rotate. */
+/* muscles worked — keyed by day index (0=Mon..6=Sun), since the day's
+   movement pattern (squat/horizontal push-pull/engine/hinge/vertical push-pull/
+   circuit/recovery) is consistent across all three week variants even though
+   exercises rotate. */
 const MUSCLE_MAP=[
   {primary:['quads','glutes'],secondary:['core','calves']},        // Mon — Lower A / Squat
   {primary:['chest','triceps'],secondary:['shoulders','lats','biceps']}, // Tue — Upper A / Horizontal
   {primary:['core'],secondary:['glutes','shoulders','calves']},    // Wed — Engine + Core
   {primary:['glutes','hamstrings'],secondary:['lowerback','core']},// Thu — Lower B / Hinge
-  {primary:['shoulders','lats','biceps'],secondary:['triceps','core']} // Fri — Upper B / Vertical
+  {primary:['shoulders','lats','biceps'],secondary:['triceps','core']}, // Fri — Upper B / Vertical
+  {primary:['core','chest'],secondary:['quads','triceps','shoulders']}, // Sat — Full Body Circuit
+  {primary:['core'],secondary:['shoulders']} // Sun — Recovery
 ];
 const MUSCLE_LABEL={quads:'Quads',glutes:'Glutes',hamstrings:'Hamstrings',calves:'Calves',
   core:'Core',chest:'Chest',shoulders:'Shoulders',lats:'Back',lowerback:'Lower back',
@@ -1427,8 +1571,7 @@ function muscleDiagram(dayIdx){
 const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
 
 /* ═══════ STATE ═══════ */
-let S={done:{},weights:[],ratings:[],day:new Date().getDay()-1};
-if(S.day<0||S.day>4)S.day=0;
+let S={done:{},weights:[],ratings:[],day:(new Date().getDay()+6)%7};
 const KEY='mb:v4';
 /* plain localStorage — works on any host, no Claude-artifact runtime required */
 async function load(){
@@ -1470,7 +1613,7 @@ function weeklyStats(weeksBack){
   for(let w=weeksBack-1; w>=0; w--){
     const monday=new Date(thisMonday); monday.setDate(thisMonday.getDate()-7*w);
     const dates=weekDatesFor(monday);
-    const per=[0,1,2,3,4].map(di=>dates.some(dk=>sessionDoneOnDate(dk,di)));
+    const per=[0,1,2,3,4,5,6].map(di=>dates.some(dk=>sessionDoneOnDate(dk,di)));
     weeks.push({monday,per,done:per.filter(Boolean).length});
   }
   return weeks;
@@ -1589,7 +1732,7 @@ function drawNav(){
     nav.appendChild(b);
   });
   const full=[0,1,2,3,4].filter(dayDoneThisWeek).length;
-  bumpStat('sDone',full+'<small>/5</small>');
+  bumpStat('sDone',full+'<small>/5 weekdays</small>');
 }
 
 function renderHome(){
@@ -1597,22 +1740,21 @@ function renderHome(){
   const wrap=document.createElement('div');
   const hr=new Date().getHours();
   const greet=hr<5?'Late one':hr<12?'Good morning':hr<18?'Good afternoon':'Good evening';
-  const todayDow=new Date().getDay()-1;                     /* 0=Mon..4=Fri, -1/5=weekend */
-  const isWeekday=todayDow>=0&&todayDow<=4;
-  const targetDow=isWeekday?todayDow:0;
-  const todaysDone=isWeekday&&sessionDoneOnDate(todayKey(),todayDow);
+  const todayDow=(new Date().getDay()+6)%7;                 /* 0=Mon..4=Fri, 5=Sat, 6=Sun */
+  const targetDow=todayDow;
+  const todaysDone=sessionDoneOnDate(todayKey(),todayDow);
   const day=PROGRAM[targetDow];
   const hero=document.createElement('div'); hero.className='hmhero';
   hero.innerHTML='<div class="hmgreet">'+greet+', Grant</div>'+
-    '<h2>'+(isWeekday?(todaysDone?day.t+' — done':day.t):'Rest day')+'</h2>'+
+    '<h2>'+(todaysDone?day.t+' — done':day.t)+'</h2>'+
     '<button type="button" class="hmstart'+(todaysDone?' done':'')+'">'+(todaysDone?'View today’s session':'Start today’s session')+'</button>'+
-    '<p>'+(isWeekday?(todaysDone?"Today's session is logged. Get ahead on tomorrow or review the week below.":day.note):'No session scheduled today — jump into any day below to get ahead, or just rest.')+'</p>';
+    '<p>'+(todaysDone?"Today's session is logged. Get ahead on tomorrow or review the week below.":day.note)+'</p>';
   hero.querySelector('.hmstart').onclick=()=>goDay(targetDow);
   const quick=document.createElement('div'); quick.className='hmquick';
   PROGRAM.forEach((p,i)=>{
     const qb=document.createElement('button'); qb.type='button';
     qb.className=dayDoneThisWeek(i)?'qdone':'';
-    if(isWeekday&&i===todayDow)qb.setAttribute('aria-current','true');
+    if(i===todayDow)qb.setAttribute('aria-current','true');
     qb.innerHTML=p.d+' <span class="qdate">'+dowDateLabel(i)+'</span><span class="qd">'+p.t+'</span>';
     qb.onclick=()=>goDay(i);
     quick.appendChild(qb);
@@ -1659,7 +1801,8 @@ function buildOverviewCard(day){
     '<div class="ovmeta">'+
       '<div><div class="k">Duration</div><div class="v">≈ '+sessionMins(day)+' min</div></div>'+
       '<div><div class="k">Movements</div><div class="v">'+day.ex.length+'</div></div>'+
-    '</div>';
+    '</div>'+
+    '<div class="ovwatch"><span class="wk">Apple Watch mode</span><span class="wv">'+day.watchMode+'</span></div>';
 
   const begin=document.createElement('button'); begin.type='button'; begin.className='ovbegin';
   begin.textContent='Begin workout';
@@ -2028,7 +2171,7 @@ function buildWeekTrackerPanel(container){
   const p=document.createElement('div'); p.className='panel';
   const body=document.createElement('div');
   function refresh(){
-    const weeks=weeklyStats(5), DOWS=['M','T','W','T','F'], today=todayKey();
+    const weeks=weeklyStats(5), DOWS=['M','T','W','T','F','S','S'], today=todayKey();
     const rows=weeks.map((w,idx)=>{
       const isCurrent=idx===weeks.length-1;
       const label=w.monday.toLocaleDateString(undefined,{month:'short',day:'numeric'});
