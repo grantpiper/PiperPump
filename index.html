@@ -884,10 +884,18 @@ const WEEK_A=[
   {name:'Standing calf raise',kit:'Adjustable kettlebell',sets:3,work:45,rest:60,
    reps:'15 per set',load:'40 lb, front-rack',
    cue:'Full stretch at the bottom, two-second squeeze at the top. Off a step if you have one.',
-   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
+   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']},
+  {name:'Ab roller',kit:'Ab roller',sets:3,work:45,rest:60,
+   reps:'10 per set',load:'Bodyweight, from the knees',
+   cue:'Ribs down, hips tucked. A leg day finishes with the same brace it started under.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']},
+  {name:'Side plank',kit:'Bodyweight',sets:2,work:90,rest:45,
+   reps:'45s per side',load:'Bodyweight',
+   cue:'Stack the hips, drive the bottom elbow down, glutes switched on.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:45,tlabel:'Side plank'}
  ]},
 {d:'Tue',t:'Upper A',s:'Horizontal · Hypertrophy',watchMode:'Traditional Strength Training',
- note:'Push, pull, and — new this rotation — a real vertical pull. Back volume was running a touch light against everything else, so the lat pulldown earns a permanent slot.',
+ note:'Push and pull in equal measure, now with a second row added — no pulldown bar or anchor point in this gym, so back volume comes from stacking row variations instead.',
  ex:[
   {name:'Band shoulder prep',kit:'Light resistance band',sets:2,work:45,rest:30,
    reps:'15 pull-aparts + 15 external rotations',load:'Light band',
@@ -901,10 +909,10 @@ const WEEK_A=[
    reps:'10 per side',load:'35–40 lb, one hand',
    cue:'Free hand braced on the bench, back flat. Pull with the elbow, not the hand.',
    frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
-  {name:'Band lat pulldown',kit:'Heavy resistance band',sets:3,work:42,rest:75,
-   reps:'15 per set',load:'Heavy band, anchored overhead',
-   cue:'Pull the elbows down and back, pause a beat at the bottom of every rep.',
-   frames:[P.ohpLock,P.ohpRack],anim:1,labels:['Overhead','Down']},
+  {name:'Bent-over row',kit:'Adjustable dumbbells',sets:4,work:36,rest:90,
+   reps:'10 per set',load:'40–45 lb in each hand',
+   cue:'Both hands at once — hinge at the hips, flat back, pull to the ribs.',
+   frames:[P.rowBtm,P.rowTop],anim:1,labels:['Hang','Rib']},
   {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:40,rest:75,
    reps:'10 per side',load:'30 lb, one hand',
    cue:'Upper arm rests on the floor at the bottom — that is your depth stop.',
@@ -917,7 +925,11 @@ const WEEK_A=[
   {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:3,work:65,rest:45,
    reps:'12 curls, then 12 extensions per side',load:'20–25 lb, one hand',
    cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']},
+  {name:'Band face pull',kit:'Medium resistance band',sets:3,work:40,rest:45,
+   reps:'20 per set',load:'Medium band at chest height',
+   cue:'Pull to the forehead with elbows high, then rotate out at the end. Rear delts pull their weight twice a week here — once now, once again Friday.',
+   frames:[P.rowBtm,P.rowTop],anim:0,labels:['Reach','Pull']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Sits between two lifting blocks by design. The complex leans on cleans and presses now, not swings — that keeps it from competing with Thursday\u2019s heavy hip-hinge work less than 24 hours later.',
@@ -949,7 +961,11 @@ const WEEK_A=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:45,rest:60,
    reps:'12 per side',load:'20 lb ball',
    cue:'The one true rotation movement in the week — everything else trains resisting rotation, this one asks for it. Feet planted, rotate from the hips and ribs together, not just the arms.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Sit-up',kit:'Bodyweight',sets:3,work:40,rest:45,
+   reps:'15 per set',load:'Bodyweight',
+   cue:'Feet planted, controlled down, drive back up through the ribs — the ab roller above trains anti-extension, this trains flexion.',
+   frames:[P.situpDown,P.situpUp],anim:1,labels:['Down','Up']}
  ]},
 {d:'Thu',t:'Lower B',s:'Hinge · Hypertrophy',watchMode:'Functional Strength Training',
  note:'Posterior chain and single-leg work, now with real separation from Wednesday since the complex no longer leans on swings — a full 72 hours from Monday, and the tissue Wednesday touches is different from what this day asks of you.',
@@ -978,7 +994,15 @@ const WEEK_A=[
    reps:'40 yd per side',load:'40 lb bell, one hand',
    cue:'The exercise is refusing to bend sideways. If the torso leans, the weight is too heavy.',
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
-   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Kettlebell hip thrust',kit:'Adjustable kettlebell + bench',sets:3,work:48,rest:75,
+   reps:'15 per set',load:'35–40 lb across the hips',
+   cue:'Same glute finisher as Monday — the posterior chain responds well to the extra frequency. Full squeeze at the top.',
+   frames:[P.kbHtBtm,P.kbHtTop],anim:0,labels:['Bottom','Lockout']},
+  {name:'Standing calf raise',kit:'Adjustable kettlebell',sets:3,work:45,rest:60,
+   reps:'15 per set',load:'40 lb, front-rack',
+   cue:'Calves respond well to hitting them twice a week — full stretch at the bottom, two-second squeeze at the top.',
+   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
  ]},
 {d:'Fri',t:'Upper B',s:'Vertical · Hypertrophy',watchMode:'Functional Strength Training',
  note:'Overhead and lat-dominant so it doesn\u2019t repeat Tuesday\u2019s pressing angle. Windmill and halo both live here — Wednesday\u2019s complex stays clean-and-press only so these two don\u2019t feel repeated mid-week.',
@@ -1011,7 +1035,11 @@ const WEEK_A=[
   {name:'Push-up finisher',kit:'Bodyweight',sets:2,work:60,rest:90,
    reps:'Max reps',load:'Bodyweight',
    cue:'To technical failure — end the set when the hips start to sag, not when the arms give out.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:4,work:38,rest:90,
+   reps:'10 per side',load:'35–40 lb, one hand',
+   cue:'A pulling station to balance the overhead pressing above — free hand braced, pull with the elbow, not the hand.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Hypertrophy',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1036,7 +1064,19 @@ const WEEK_A=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:45,rest:60,
    reps:'12 per side',load:'20 lb ball',
    cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:4,work:38,rest:90,
+   reps:'10 per side',load:'30–35 lb, one hand',
+   cue:'A pulling station to balance the pressing above — free hand braced, pull with the elbow, not the hand.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
+  {name:'Push-up finisher',kit:'Bodyweight',sets:2,work:60,rest:90,
+   reps:'Max reps',load:'Bodyweight',
+   cue:'A classic circuit closer — end the set when the hips start to sag, not when the arms give out.',
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Ab roller',kit:'Ab roller',sets:3,work:45,rest:60,
+   reps:'10 per set',load:'Bodyweight, from the knees',
+   cue:'The one core station this circuit was missing. Ribs down, hips tucked.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']}
  ]},
 {d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
  note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
@@ -1056,7 +1096,25 @@ const WEEK_A=[
   {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
    reps:'30s per side',load:'Bodyweight',
    cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
-   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'},
+  {name:'Bodyweight reverse lunge flow',kit:'Bodyweight',sets:2,work:40,rest:20,
+   reps:'8 per leg, slow',load:'Bodyweight',knee:1,
+   cue:'No added weight today — this is mobility, not a load day. Stepping back keeps shear off the front knee.',
+   frames:[P.kbRackSplitTop,P.kbRackSplitBtm],anim:1,labels:['Stand','Back knee down']},
+  {name:'Kettlebell windmill',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'5 per side, slow',load:'10–15 lb, very light',
+   cue:'Light bell, unhurried pace — a hip and t-spine mobility flow, not a strength movement today.',
+   frames:[P.windmillTop,P.windmillDown],anim:1,labels:['Top','Side reach'],
+   front:[PF.windmillTop,PF.windmillReach],frontLabels:['Top','Side reach'],motion:'flow'},
+  {name:'Turkish get-up',kit:'Bodyweight, or a very light kettlebell',sets:2,work:45,rest:30,
+   reps:'2 per side, no rush',load:'Bodyweight or 10–15 lb',
+   cue:'Practice the pattern, not the load — own every checkpoint: elbow, hand, bridge, kneel, stand.',
+   frames:[P.getupFloor,P.getupPost,P.getupStand],anim:1,labels:['Floor','Post','Stand'],motion:'flow'},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'30 yd per side, easy pace',load:'15–20 lb bell, light',
+   cue:'Light bell, easy pace — just enough to keep the core switched on without adding fatigue before tomorrow.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]}
 ];
 
@@ -1088,7 +1146,15 @@ const WEEK_B=[
   {name:'Standing calf raise',kit:'Adjustable kettlebell',sets:3,work:36,rest:75,
    reps:'12 per set, heavy',load:'40 lb, front-rack',
    cue:'Full stretch at the bottom, two-second squeeze at the top.',
-   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
+   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']},
+  {name:'Ab roller',kit:'Ab roller',sets:3,work:40,rest:60,
+   reps:'8 per set, controlled',load:'Bodyweight, from the knees',
+   cue:'Slow and controlled — ribs down, hips tucked.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']},
+  {name:'Side plank',kit:'Bodyweight',sets:2,work:120,rest:45,
+   reps:'60s per side',load:'Bodyweight',
+   cue:'Longer holds this week. Stack the hips, glutes switched on.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:60,tlabel:'Side plank'}
  ]},
 {d:'Tue',t:'Upper A',s:'Horizontal · Strength',watchMode:'Traditional Strength Training',
  note:'The row goes bilateral this week — both dumbbells at once lets you load past what a single kettlebell can offer, which is exactly what a strength-focused pulling day needs.',
@@ -1105,10 +1171,10 @@ const WEEK_B=[
    reps:'6 per set, heavy',load:'50 lb in each hand',
    cue:'Both hands at once this week — heavier than the single-arm version, and it should feel like it.',
    frames:[P.rowBtm,P.rowTop],anim:1,labels:['Hang','Rib']},
-  {name:'Band lat pulldown',kit:'Heavy resistance band',sets:3,work:35,rest:90,
-   reps:'10 per set, slow',load:'Heavy band, anchored overhead',
-   cue:'Slower tempo than usual — three full seconds on the way down.',
-   frames:[P.ohpLock,P.ohpRack],anim:1,labels:['Overhead','Down']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:4,work:32,rest:120,
+   reps:'6 per side, heavy',load:'45–50 lb, one hand',
+   cue:'Free hand braced on the bench, back flat. Heavier and slower than usual — pull with the elbow, not the hand.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
   {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:36,rest:90,
    reps:'8 per side, heavy',load:'35 lb, one hand',
    cue:'Upper arm rests on the floor at the bottom — that is your depth stop.',
@@ -1121,7 +1187,11 @@ const WEEK_B=[
   {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:2,work:55,rest:45,
    reps:'10 curls, then 10 extensions per side',load:'25–30 lb, one hand',
    cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']},
+  {name:'Band face pull',kit:'Medium resistance band',sets:2,work:40,rest:45,
+   reps:'20 per set',load:'Medium band at chest height',
+   cue:'Pull to the forehead with elbows high, then rotate out at the end. Rear delts pull their weight twice a week here — once now, once again Friday.',
+   frames:[P.rowBtm,P.rowTop],anim:0,labels:['Reach','Pull']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Lighter touch this week on purpose — the heavy lower and upper days need the recovery, so this is more genuine active recovery than a third hard session.',
@@ -1153,7 +1223,11 @@ const WEEK_B=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:40,rest:75,
    reps:'10 per side, heavier',load:'30 lb ball',
    cue:'Heavier ball, fewer reps this week — same rule, rotate from the hips and ribs together.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Sit-up',kit:'Bodyweight',sets:3,work:35,rest:45,
+   reps:'12 per set, controlled',load:'Bodyweight',
+   cue:'Slow and controlled — the ab roller above trains anti-extension, this trains flexion.',
+   frames:[P.situpDown,P.situpUp],anim:1,labels:['Down','Up']}
  ]},
 {d:'Thu',t:'Lower B',s:'Hinge · Strength',watchMode:'Functional Strength Training',
  note:'The real heavy day of this rotation. The Jayflex bar is what actually lets you load a true low-rep strength stimulus — this is the one lift each week worth loading past what dumbbells alone allow.',
@@ -1182,7 +1256,15 @@ const WEEK_B=[
    reps:'40 yd per side, heavier bell',load:'40 lb bell, one hand',
    cue:'The exercise is refusing to bend sideways. Heavier bell, same standard.',
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
-   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Kettlebell hip thrust',kit:'Adjustable kettlebell + bench',sets:3,work:35,rest:100,
+   reps:'10 per set, heavy',load:'40 lb across the hips',
+   cue:'Same heavy glute work as Monday — full pause at the top on every rep.',
+   frames:[P.kbHtBtm,P.kbHtTop],anim:0,labels:['Bottom','Lockout']},
+  {name:'Standing calf raise',kit:'Adjustable kettlebell',sets:3,work:36,rest:75,
+   reps:'12 per set, heavy',load:'40 lb, front-rack',
+   cue:'Full stretch at the bottom, two-second squeeze at the top.',
+   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
  ]},
 {d:'Fri',t:'Upper B',s:'Vertical · Strength',watchMode:'Functional Strength Training',
  note:'Overhead pressing gets the heavy treatment this week, same logic as Tuesday\u2019s bench — long rest, low reps, full effort on every set.',
@@ -1215,7 +1297,11 @@ const WEEK_B=[
   {name:'Push-up finisher',kit:'Bodyweight, weighted vest',sets:2,work:55,rest:90,
    reps:'Max reps, vest on',load:'Bodyweight + 10 lb vest',
    cue:'The vest turns this into real added load. End the set when the hips sag.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:3,work:32,rest:120,
+   reps:'8 per side, heavy',load:'40–45 lb, one hand',
+   cue:'A pulling station to balance the overhead pressing above — heavier and slower, free hand braced on the bench.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Strength',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1240,7 +1326,19 @@ const WEEK_B=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:40,rest:75,
    reps:'10 per side, heavier',load:'30 lb ball',
    cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:3,work:36,rest:90,
+   reps:'8 per side, heavy',load:'35–40 lb, one hand',
+   cue:'A pulling station to balance the pressing above — free hand braced, pull with the elbow, not the hand.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
+  {name:'Push-up finisher',kit:'Bodyweight, weighted vest',sets:2,work:55,rest:90,
+   reps:'Max reps, vest on',load:'Bodyweight + 10 lb vest',
+   cue:'The vest is already on from the warm-up — let it add real load here. End the set when the hips sag.',
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Ab roller',kit:'Ab roller',sets:3,work:40,rest:60,
+   reps:'8 per set, controlled',load:'Bodyweight, from the knees',
+   cue:'The one core station this circuit was missing. Slow and controlled — ribs down, hips tucked.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']}
  ]},
 {d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
  note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
@@ -1260,7 +1358,25 @@ const WEEK_B=[
   {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
    reps:'30s per side',load:'Bodyweight',
    cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
-   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'},
+  {name:'Bodyweight reverse lunge flow',kit:'Bodyweight',sets:2,work:40,rest:20,
+   reps:'8 per leg, slow',load:'Bodyweight',knee:1,
+   cue:'No added weight today — this is mobility, not a load day. Stepping back keeps shear off the front knee.',
+   frames:[P.kbRackSplitTop,P.kbRackSplitBtm],anim:1,labels:['Stand','Back knee down']},
+  {name:'Kettlebell windmill',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'5 per side, slow',load:'10–15 lb, very light',
+   cue:'Light bell, unhurried pace — a hip and t-spine mobility flow, not a strength movement today.',
+   frames:[P.windmillTop,P.windmillDown],anim:1,labels:['Top','Side reach'],
+   front:[PF.windmillTop,PF.windmillReach],frontLabels:['Top','Side reach'],motion:'flow'},
+  {name:'Turkish get-up',kit:'Bodyweight, or a very light kettlebell',sets:2,work:45,rest:30,
+   reps:'2 per side, no rush',load:'Bodyweight or 10–15 lb',
+   cue:'Practice the pattern, not the load — own every checkpoint: elbow, hand, bridge, kneel, stand.',
+   frames:[P.getupFloor,P.getupPost,P.getupStand],anim:1,labels:['Floor','Post','Stand'],motion:'flow'},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'30 yd per side, easy pace',load:'15–20 lb bell, light',
+   cue:'Light bell, easy pace — just enough to keep the core switched on without adding fatigue before tomorrow.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]}
 ];
 
@@ -1292,7 +1408,15 @@ const WEEK_C=[
   {name:'Medicine ball thruster',kit:'20 lb medicine ball',sets:3,work:45,rest:50,
    reps:'12 per set',load:'20 lb ball',
    cue:'Squat down with the ball racked at your chest, stand and press it overhead in one motion. This is this week\u2019s full-body metabolic finisher for the day — quick pace, no pause at the top.',
-   frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']}
+   frames:[P.thrusterBtm,P.thrusterTop],anim:1,labels:['Racked','Locked out']},
+  {name:'Ab roller',kit:'Ab roller',sets:3,work:40,rest:35,
+   reps:'12 per set, quick pace',load:'Bodyweight, from the knees',
+   cue:'Higher reps, shorter rest — ribs down, hips tucked.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']},
+  {name:'Side plank',kit:'Bodyweight',sets:3,work:60,rest:30,
+   reps:'30s per side',load:'Bodyweight',
+   cue:'Shorter holds, more of them. Stack the hips, glutes switched on.',
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
  ]},
 {d:'Tue',t:'Upper A',s:'Horizontal · Metabolic',watchMode:'Traditional Strength Training',
  note:'Higher reps and shorter rest throughout, with the curl-and-extension pair now a genuine short-rest superset — this day is about sustained effort, not single heavy sets.',
@@ -1309,10 +1433,10 @@ const WEEK_C=[
    reps:'15 per side',load:'25–30 lb, one hand',
    cue:'Free hand braced on the bench, back flat, fast honest reps.',
    frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
-  {name:'Band lat pulldown',kit:'Heavy resistance band',sets:3,work:60,rest:50,
-   reps:'20 per set',load:'Heavy band, anchored overhead',
-   cue:'Pull the elbows down and back, keep the pace moving.',
-   frames:[P.ohpLock,P.ohpRack],anim:1,labels:['Overhead','Down']},
+  {name:'Bent-over row',kit:'Adjustable dumbbells',sets:3,work:55,rest:50,
+   reps:'15 per set',load:'25–30 lb in each hand',
+   cue:'Lighter weight, higher reps, fast honest pace — hinge at the hips, flat back, pull to the ribs.',
+   frames:[P.rowBtm,P.rowTop],anim:1,labels:['Hang','Rib']},
   {name:'Kettlebell single-arm floor press',kit:'Adjustable kettlebell',sets:3,work:55,rest:50,
    reps:'15 per side',load:'20–25 lb, one hand',
    cue:'Upper arm rests on the floor at the bottom — that is your depth stop, even fatigued.',
@@ -1325,7 +1449,11 @@ const WEEK_C=[
   {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:3,work:70,rest:35,
    reps:'15 curls, then 15 extensions per side',load:'15–20 lb, one hand',
    cue:'A genuine superset this week — minimal rest between the two movements and between rounds.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']},
+  {name:'Band face pull',kit:'Medium resistance band',sets:3,work:50,rest:35,
+   reps:'25 per set',load:'Medium band at chest height',
+   cue:'Pull to the forehead with elbows high — keep the pace up. Rear delts pull their weight twice a week here — once now, once again Friday.',
+   frames:[P.rowBtm,P.rowTop],anim:0,labels:['Reach','Pull']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'The most conditioning-forward version of this day — longer walk, more complex rounds, more intervals. Still nothing high-impact and nothing loading deep knee flexion.',
@@ -1357,7 +1485,11 @@ const WEEK_C=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:3,work:35,rest:40,
    reps:'15 per side, fast pace',load:'20 lb ball',
    cue:'Quick and continuous this week — still rotating from the hips and ribs together, not just the arms.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Ab roller',kit:'Ab roller',sets:4,work:35,rest:35,
+   reps:'12 per set, quick pace',load:'Bodyweight, from the knees',
+   cue:'The weighted sit-up above trains flexion — this is the anti-extension half of the pair. Ribs down, hips tucked.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']}
  ]},
 {d:'Thu',t:'Lower B',s:'Hinge · Metabolic',watchMode:'Functional Strength Training',
  note:'Same movements as always, higher reps and faster pace this week — the posterior chain still gets a full recovery window from Wednesday\u2019s complex, which never touches swings.',
@@ -1386,7 +1518,15 @@ const WEEK_C=[
    reps:'40 yd per side, faster pace',load:'30–35 lb bell, one hand',
    cue:'One more set than usual, quicker pace — the anti-lean standard doesn\u2019t relax just because you\u2019re moving faster.',
    frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
-   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']},
+  {name:'Kettlebell hip thrust',kit:'Adjustable kettlebell + bench',sets:3,work:55,rest:50,
+   reps:'20 per set',load:'25–30 lb across the hips',
+   cue:'High reps, short rest, same full squeeze at the top on every single one.',
+   frames:[P.kbHtBtm,P.kbHtTop],anim:0,labels:['Bottom','Lockout']},
+  {name:'Standing calf raise',kit:'Adjustable kettlebell',sets:3,work:40,rest:35,
+   reps:'20 per set',load:'30–35 lb, front-rack',
+   cue:'Quick pace, full range every rep — full stretch at the bottom, squeeze at the top.',
+   frames:[P.rack,P.rack],anim:0,labels:['Down','Up']}
  ]},
 {d:'Fri',t:'Upper B',s:'Vertical · Metabolic',watchMode:'Functional Strength Training',
  note:'The week closes with its highest-rep, shortest-rest upper session — good for the conditioning side of the goal, and two full days of real recovery sit between here and Monday\u2019s squats.',
@@ -1419,7 +1559,11 @@ const WEEK_C=[
   {name:'Push-up finisher',kit:'Bodyweight',sets:3,work:50,rest:60,
    reps:'Max reps, shorter rest between sets',load:'Bodyweight',
    cue:'Three rounds this week instead of two — end each set when the hips start to sag.',
-   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']}
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:3,work:55,rest:45,
+   reps:'15 per side',load:'20–25 lb, one hand',
+   cue:'A pulling station to balance the overhead pressing above — fast, honest reps, free hand braced on the bench.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Metabolic',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1444,7 +1588,19 @@ const WEEK_C=[
   {name:'Medicine ball rotational twist',kit:'20 lb medicine ball',sets:4,work:35,rest:35,
    reps:'15 per side, fast pace',load:'15 lb ball',
    cue:'Feet planted, rotate from the hips and ribs together, not just the arms.',
-   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']}
+   frames:[P.twistHigh,P.twistLow],anim:1,labels:['High','Low']},
+  {name:'Kettlebell single-arm row',kit:'Adjustable kettlebell + bench',sets:3,work:55,rest:60,
+   reps:'15 per side',load:'25–30 lb, one hand',
+   cue:'A pulling station to balance the pressing above — fast, honest reps, free hand braced on the bench.',
+   frames:[P.kbRowBtm,P.kbRowTop],anim:1,labels:['Hang','Rib']},
+  {name:'Push-up finisher',kit:'Bodyweight',sets:3,work:50,rest:45,
+   reps:'Max reps, shorter rest between sets',load:'Bodyweight',
+   cue:'The circuit closer — quick turnaround, end each set when the hips start to sag.',
+   frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
+  {name:'Ab roller',kit:'Ab roller',sets:4,work:35,rest:35,
+   reps:'12 per set, quick pace',load:'Bodyweight, from the knees',
+   cue:'The one core station this circuit was missing. Ribs down, hips tucked, don’t let the pace break the brace.',
+   frames:[P.rollTuck,P.rollOut],anim:1,labels:['Tucked','Extended']}
  ]},
 {d:'Sun',t:'Recovery',s:'Low impact',watchMode:'Flexibility',
  note:'A deliberately light day — easy circulation and mobility, not conditioning. The goal is to walk into Monday’s squat day fresh, not to add fatigue.',
@@ -1464,7 +1620,25 @@ const WEEK_C=[
   {name:'Side plank hold',kit:'Bodyweight',sets:2,work:60,rest:30,
    reps:'30s per side',load:'Bodyweight',
    cue:'Just enough tension to keep the core switched on without adding real fatigue before tomorrow’s squat day.',
-   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'}
+   frames:[P.plank,P.plank],anim:0,labels:['Hold','Hold'],timer:30,tlabel:'Side plank'},
+  {name:'Bodyweight reverse lunge flow',kit:'Bodyweight',sets:2,work:40,rest:20,
+   reps:'8 per leg, slow',load:'Bodyweight',knee:1,
+   cue:'No added weight today — this is mobility, not a load day. Stepping back keeps shear off the front knee.',
+   frames:[P.kbRackSplitTop,P.kbRackSplitBtm],anim:1,labels:['Stand','Back knee down']},
+  {name:'Kettlebell windmill',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'5 per side, slow',load:'10–15 lb, very light',
+   cue:'Light bell, unhurried pace — a hip and t-spine mobility flow, not a strength movement today.',
+   frames:[P.windmillTop,P.windmillDown],anim:1,labels:['Top','Side reach'],
+   front:[PF.windmillTop,PF.windmillReach],frontLabels:['Top','Side reach'],motion:'flow'},
+  {name:'Turkish get-up',kit:'Bodyweight, or a very light kettlebell',sets:2,work:45,rest:30,
+   reps:'2 per side, no rush',load:'Bodyweight or 10–15 lb',
+   cue:'Practice the pattern, not the load — own every checkpoint: elbow, hand, bridge, kneel, stand.',
+   frames:[P.getupFloor,P.getupPost,P.getupStand],anim:1,labels:['Floor','Post','Stand'],motion:'flow'},
+  {name:'Suitcase carry',kit:'Adjustable kettlebell',sets:2,work:35,rest:30,
+   reps:'30 yd per side, easy pace',load:'15–20 lb bell, light',
+   cue:'Light bell, easy pace — just enough to keep the core switched on without adding fatigue before tomorrow.',
+   frames:[P.carry,P.carry],anim:0,labels:['Load','Walk tall'],
+   front:[PF.suitcaseUp,PF.suitcaseDip],frontLabels:['Stay tall','Avoid: dipping toward the bell']}
  ]}
 ];
 
@@ -1522,9 +1696,9 @@ const MUSCLE_MAP=[
   {primary:['quads','glutes'],secondary:['core','calves']},        // Mon — Lower A / Squat
   {primary:['chest','triceps'],secondary:['shoulders','lats','biceps']}, // Tue — Upper A / Horizontal
   {primary:['core'],secondary:['glutes','shoulders','calves']},    // Wed — Engine + Core
-  {primary:['glutes','hamstrings'],secondary:['lowerback','core']},// Thu — Lower B / Hinge
+  {primary:['glutes','hamstrings'],secondary:['lowerback','core','calves']},// Thu — Lower B / Hinge
   {primary:['shoulders','lats','biceps'],secondary:['triceps','core']}, // Fri — Upper B / Vertical
-  {primary:['core','chest'],secondary:['quads','triceps','shoulders']}, // Sat — Full Body Circuit
+  {primary:['core','chest'],secondary:['quads','triceps','shoulders','lats']}, // Sat — Full Body Circuit
   {primary:['core'],secondary:['shoulders']} // Sun — Recovery
 ];
 const MUSCLE_LABEL={quads:'Quads',glutes:'Glutes',hamstrings:'Hamstrings',calves:'Calves',
@@ -1845,7 +2019,6 @@ const MOTION={
    a link to the wrong movement is worse than no link. */
 const FITBOD={
   'Band face pull':'loop-band-face-pull',
-  'Band lat pulldown':'loop-band-lat-pulldown',
   'Band shoulder prep':'loop-band-shoulder-external-rotation',
   'Barbell deadlift (Jayflex)':'deadlift',
   'Bent-over row':'bent-over-barbell-row',
