@@ -3,3 +3,6 @@
 .DS_Store
 files.zip
 deploy/
+
+# Firecrawl CLI local cache
+.firecrawl/
