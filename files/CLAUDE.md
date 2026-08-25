@@ -64,9 +64,9 @@ const WEEKS=[WEEK_A,WEEK_B,WEEK_C];
 const PROGRAM=WEEKS[(isoWeekNumber(new Date())-1)%WEEKS.length];
 ```
 - **Hard constraint, do not break it:** every week variant must have the exact
-  same number of exercises for a given day-of-week slot (currently
-  Mon=6, Tue=7, Wed=7, Thu=6, Fri=8, Sat=5, Sun=4 — consistent across all three
-  weeks). `sessionDoneOnDate()` checks completion by comparing checked count
+  same number of exercises for a given day-of-week slot (currently all seven
+  days — Mon through Sun — carry 8 exercises each, consistent across all
+  three weeks). `sessionDoneOnDate()` checks completion by comparing checked count
   against `PROGRAM[dayIdx].ex.length` — if that length can differ depending on
   which week is live, historical completion records silently become wrong for
   dates logged under a different week variant. If you need to add/remove an
@@ -81,6 +81,23 @@ const PROGRAM=WEEKS[(isoWeekNumber(new Date())-1)%WEEKS.length];
   adjustable dumbbells + bench already in the program. Sets/reps/load scale
   per week the same way the rest of Friday's accessories do (3x12 @ ~35 lb
   Hypertrophy, 4x8 @ ~45 lb heavy Strength, 3x18 @ ~25 lb Metabolic).
+- In a later session, every remaining day (Mon, Tue, Wed, Thu, Sat, Sun) was
+  expanded from its previous count up to 8 exercises in all three weeks, to
+  match Friday. Tuesday's "Band lat pulldown" — the one other exercise besides
+  the earlier-removed lat pulldown that needed a high/overhead anchor point
+  the home gym doesn't have — was replaced in place with "Bent-over dumbbell
+  row", and a "Standing dumbbell reverse fly" was appended, so Tuesday no
+  longer depends on any anchored equipment. The added poses (`reverseFlyBtm`/
+  `reverseFlyTop`, `deadBugA`/`deadBugB`, `farmerCarry`, `hamstringStretch`)
+  are new joint-angle poses and were matplotlib-verified per the pose-authoring
+  rule above before being ported to JS; everything else added that pass reused
+  existing poses from the `P` table (goblet squat hold reuses `P.gobletBtm`,
+  ab roller reuses `P.rollTuck`/`P.rollOut`, Turkish get-up reuses
+  `P.getupFloor`/`P.getupPost`/`P.getupStand`, kettlebell swing reuses
+  `P.swingBack`/`P.swingTop`, push-up finisher reuses `P.puTop`/`P.puBtm`).
+  Sunday's four new exercises (goblet squat hold, hamstring stretch, light ab
+  roller, light Turkish get-up) use identical prescriptions across all three
+  weeks, matching Sunday's existing "same content in every week" pattern.
 - Wednesday's kettlebell complex deliberately avoids swings — it sits ~24h
   before Thursday's heavy deadlift/snatch day, and swings would overlap the
   same posterior-chain recovery window (this was a real fix, not a style
