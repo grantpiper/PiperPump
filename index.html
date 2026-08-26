@@ -289,9 +289,16 @@ main.dayswap{animation:mainFade 220ms var(--ease-out)}
 .cue-wrap{margin:4px 0}
 .cue{color:var(--mist);font-size:14.5px;line-height:1.55;margin:0;
   padding-left:14px;border-left:3px solid var(--signal)}
-.watchform{display:inline-flex;align-items:center;gap:5px;font:800 12px/1 'Barlow Condensed',sans-serif;
-  letter-spacing:.04em;text-transform:uppercase;color:var(--signal);text-decoration:none;
-  margin:2px 0 6px;padding:0}
+/* full-size watch-form CTA — same pill shape/size as .completebar so it reads
+   as an equally important action, not a footnote link. Outlined in signal
+   instead of filled so it's still visually distinct from "mark complete". */
+.watchform{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  margin-top:8px;padding:12px;border-radius:999px;border:1.5px solid var(--signal);
+  background:transparent;color:var(--signal);font-family:'Barlow Condensed',sans-serif;
+  font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;
+  text-decoration:none;box-sizing:border-box;
+  transition:background 150ms var(--ease-out),color 150ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.watchform:hover{background:var(--signal);color:var(--ink)}}
 
 /* standalone green "begin workout" intro page — shown after picking a day,
    before the exercise carousel. Simple: focus tag, description, equipment,
@@ -333,7 +340,7 @@ main.dayswap{animation:mainFade 220ms var(--ease-out)}
   cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
   text-transform:uppercase;letter-spacing:.04em;transition:transform 120ms var(--ease-out)}
 .ovbegin:active{transform:scale(.97)}
-.watchform:active{opacity:.7}
+.watchform:active{transform:scale(.97)}
 
 /* illustration docks small by default (identification, not the focus) — a view
    toggle swaps side/front rather than showing both stacked at once */
@@ -733,6 +740,8 @@ const P={
  barDeadBtm:{shin:4,thigh:16,torso:74,ua:2,fa:2,ua2:-2,fa2:-2,load:'bar'},
  swingBack:{shin:6,thigh:20,torso:66,ua:24,fa:28,load:'kb'},
  swingTop:{shin:0,thigh:0,torso:-3,ua:80,fa:84,load:'kb'},
+ kbPulloverTop:{shin:0,thigh:0,torso:-3,ua:168,fa:173,load:'kb'},
+ kbPulloverBtm:{shin:6,thigh:20,torso:66,ua:24,fa:28,load:'kb'},
  rowBtm:{shin:6,thigh:16,torso:72,ua:0,fa:0,load:'db'},
  rowTop:{shin:6,thigh:16,torso:72,ua:-30,fa:-122,load:'db'},
  ohpRack:{shin:0,thigh:0,torso:0,ua:-16,fa:152,ua2:-16,fa2:152,load:'db'},
@@ -743,8 +752,6 @@ const P={
  thrusterTop:{shin:-2,thigh:2,torso:5,ua:174,fa:177,ua2:166,fa2:171,load:'db'},
  ohLungeBtm:{shin:-18,thigh:24,thigh2:-40,shin2:-6,torso:8,f2:-70,ua:174,fa:177,ua2:166,fa2:171,load:'db'},
  ohLungeTop:{shin:-4,thigh:6,thigh2:-16,shin2:-4,torso:4,f2:-40,ua:174,fa:177,ua2:166,fa2:171,load:'db'},
- situpDown:{rot:-90,thigh:-56,shin:100,torso:0,ua:-176,fa:-178,ua2:-176,fa2:-178,head:6,f1:-30,f2:-30,load:'db',floor:5},
- situpUp:{rot:-36,thigh:-40,shin:88,torso:-58,ua:8,fa:6,ua2:8,fa2:6,head:-4,f1:-30,f2:-30,load:'db',floor:5},
  latBtm:{shin:0,thigh:0,torso:1,ua:4,fa:6,ua2:-4,fa2:-6,load:'db'},
  latTop:{shin:0,thigh:0,torso:2,ua:88,fa:90,ua2:82,fa2:84,load:'db'},
  curlBtm:{shin:0,thigh:0,torso:0,ua:-4,fa:-2,ua2:-4,fa2:-2,load:'db'},
@@ -756,8 +763,6 @@ const P={
  plank:{rot:-90,thigh:2,shin:2,torso:-4,ua:6,fa:74,head:-14,f1:-58,f2:-58},
  benchTop:{rot:-90,thigh:-46,shin:88,torso:0,ua:0,fa:0,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
  benchBtm:{rot:-90,thigh:-46,shin:88,torso:0,ua:44,fa:-58,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
- pulloverTop:{rot:-90,thigh:-46,shin:88,torso:0,ua:-90,fa:-90,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
- pulloverStretch:{rot:-90,thigh:-46,shin:88,torso:0,ua:-135,fa:-108,f1:0,f2:0,load:'db',bench:[-24,82,8,40]},
  reverseFlyBtm:{shin:6,thigh:16,torso:72,ua:4,fa:6,load:'db'},
  reverseFlyTop:{shin:6,thigh:16,torso:72,ua:88,fa:90,load:'db'},
  deadBugA:{rot:-90,thigh:0,shin:0,thigh2:-90,shin2:20,torso:0,ua:180,fa:170,ua2:-70,fa2:-60,head:6,f1:-20,f2:-30,floor:5},
@@ -779,7 +784,6 @@ const P={
  kbOhpRack:{shin:0,thigh:0,torso:0,ua:-16,fa:152,ua2:-6,fa2:-8,load:'kb'},
  kbOhpLock:{shin:0,thigh:0,torso:-2,ua:168,fa:173,ua2:-6,fa2:-8,load:'kb'},
  kbCurlDown:{shin:0,thigh:0,torso:0,ua:-4,fa:-2,ua2:-6,fa2:-8,load:'kb'},
- kbCurlPeak:{shin:0,thigh:0,torso:0,ua:-6,fa:134,ua2:-6,fa2:-8,load:'kb'},
  kbLatDown:{shin:0,thigh:0,torso:1,ua:4,fa:6,ua2:-6,fa2:-8,load:'kb'},
  kbLatTop:{shin:0,thigh:0,torso:2,ua:88,fa:90,ua2:-6,fa2:-8,load:'kb'},
  kbRackSplitTop:{shin:-4,thigh:6,thigh2:-16,shin2:-4,torso:4,ua:-14,fa:150,ua2:-6,fa2:-8,f2:-40,load:'kb',bench:[-34,2,0,16]},
@@ -881,10 +885,10 @@ const WEEK_A=[
    reps:'15 per set',load:'10–12 lb in each hand',
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
-  {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:3,work:65,rest:45,
-   reps:'12 curls, then 12 extensions per side',load:'20–25 lb, one hand',
-   cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+  {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:3,work:65,rest:45,
+   reps:'12 per side, curl straight into press',load:'20–25 lb, bottom-up grip',
+   cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Curl to the shoulder, then press overhead in one continuous motion.',
+   frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Sits between two lifting blocks by design. The complex leans on cleans and presses now, not swings — that keeps it from competing with Thursday\u2019s heavy hip-hinge work less than 24 hours later.',
@@ -991,10 +995,10 @@ const WEEK_A=[
    reps:'Max reps',load:'Bodyweight',
    cue:'To technical failure — end the set when the hips start to sag, not when the arms give out.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
-  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:3,work:45,rest:75,
-   reps:'12 per set',load:'35 lb (one dumbbell, both hands)',
-   cue:'Hips stay low on the bench, ribs stay down — the stretch comes from the shoulders, not an arched back.',
-   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
+  {name:'Standing kettlebell pullover',kit:'Adjustable kettlebell',sets:3,work:45,rest:75,
+   reps:'12 per set',load:'25–30 lb, both hands',
+   cue:'Arms straight overhead, then hinge at the hips and pull the bell down and back in an arc, finishing near the shins. No anchor needed — this is the vertical pull Friday was missing.',
+   frames:[P.kbPulloverTop,P.kbPulloverBtm],anim:1,labels:['Overhead','Hinged pull']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Hypertrophy',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1120,10 +1124,10 @@ const WEEK_B=[
    reps:'5 per set, heavy',load:'50 lb in each hand',
    cue:'This week\u2019s heaviest press. Full three-minute rest — strength work needs the phosphagen system fully topped off between sets.',
    frames:[P.benchTop,P.benchBtm],anim:1,labels:['Lockout','Chest']},
-  {name:'Bent-over row',kit:'Adjustable dumbbells',sets:5,work:30,rest:150,
+  {name:'Ballistic Rows',kit:'Adjustable dumbbells',sets:5,work:30,rest:150,
    reps:'6 per set, heavy',load:'50 lb in each hand',
-   cue:'Both hands at once this week — heavier than the single-arm version, and it should feel like it.',
-   frames:[P.rowBtm,P.rowTop],anim:1,labels:['Hang','Rib']},
+   cue:'Both hands at once, snap the pull instead of grinding it — pull hard and fast, then lower under control and reset.',
+   frames:[P.rowBtm,P.rowTop],anim:1,labels:['Hang','Rib'],motion:'explosive'},
   {name:'Bent-over dumbbell row',kit:'Adjustable dumbbells',sets:4,work:35,rest:120,
    reps:'8 per set, heavy',load:'40–45 lb in each hand',
    cue:'Hinge at the hips, flat back, pull both dumbbells to the ribs together. No anchor needed — this is the vertical pull’s replacement for real back volume.',
@@ -1141,10 +1145,10 @@ const WEEK_B=[
    reps:'10 per set, heavier',load:'15–18 lb in each hand',
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
-  {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:2,work:55,rest:45,
-   reps:'10 curls, then 10 extensions per side',load:'25–30 lb, one hand',
-   cue:'Back to back with no rest between the two, then 45 seconds before the next round.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+  {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:2,work:55,rest:45,
+   reps:'10 per side, heavier, curl straight into press',load:'25–30 lb, bottom-up grip',
+   cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Curl to the shoulder, then press overhead in one continuous motion.',
+   frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'Lighter touch this week on purpose — the heavy lower and upper days need the recovery, so this is more genuine active recovery than a third hard session.',
@@ -1251,10 +1255,10 @@ const WEEK_B=[
    reps:'Max reps, vest on',load:'Bodyweight + 10 lb vest',
    cue:'The vest turns this into real added load. End the set when the hips sag.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
-  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:4,work:35,rest:100,
-   reps:'8 per set, heavy',load:'45 lb (one dumbbell, both hands)',
-   cue:'Heavier this week, same control — the stretch stays smooth, don’t let the weight yank you into it.',
-   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
+  {name:'Standing kettlebell pullover',kit:'Adjustable kettlebell',sets:4,work:35,rest:100,
+   reps:'8 per set, heavy',load:'35–40 lb, both hands',
+   cue:'Heavier this week, same control — arms straight overhead, hinge and pull the bell down and back to the shins, don’t let the weight yank you into it.',
+   frames:[P.kbPulloverTop,P.kbPulloverBtm],anim:1,labels:['Overhead','Hinged pull']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Strength',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1401,10 +1405,10 @@ const WEEK_C=[
    reps:'20 per set',load:'8–10 lb in each hand',
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
-  {name:'Kettlebell curl and overhead extension',kit:'Adjustable kettlebell',sets:3,work:70,rest:35,
-   reps:'15 curls, then 15 extensions per side',load:'15–20 lb, one hand',
-   cue:'A genuine superset this week — minimal rest between the two movements and between rounds.',
-   frames:[P.kbCurlDown,P.kbCurlPeak],anim:1,labels:['Extended','Peak']}
+  {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:3,work:70,rest:35,
+   reps:'15 per side, curl straight into press',load:'15–20 lb, bottom-up grip',
+   cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Minimal rest between rounds this week.',
+   frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
 {d:'Wed',t:'Engine + Core',s:'Low impact',watchMode:'High Intensity Interval Training',
  note:'The most conditioning-forward version of this day — longer walk, more complex rounds, more intervals. Still nothing high-impact and nothing loading deep knee flexion.',
@@ -1421,10 +1425,10 @@ const WEEK_C=[
    reps:'45s hard, then 60s easy',load:'3.5 mph at 12%, down to 3.0 at 4%',knee:1,
    cue:'More rounds, shorter rest — walking only, so your knees never take an impact.',
    frames:[P.walkA,P.walkB],anim:0,labels:['Climb','Recover'],timer:45,tlabel:'Hard interval'},
-  {name:'Weighted sit-up',kit:'Balance ball + 20 lb medicine ball',sets:4,work:40,rest:45,
-   reps:'12 per set',load:'20 lb ball',
-   cue:'Bigger range of motion than the ab roller — feet planted, ball held at your chest on the way down, press it out in front as you sit up. Quick pace this week.',
-   frames:[P.situpDown,P.situpUp],anim:1,labels:['Down','Up']},
+  {name:'KB Up Downs',kit:'Two kettlebells',sets:4,work:40,rest:45,
+   reps:'10 per side',load:'Bodyweight, kettlebells as low hand supports',
+   cue:'Plank on the bells, hips level. Drop to one forearm, then the other, then press back up one hand at a time — quick pace this week, don’t let the hips rock.',
+   frames:[P.plank,P.puTop],anim:1,labels:['Forearm down','Hand up']},
   {name:'Turkish get-up',kit:'Adjustable kettlebell',sets:2,work:40,rest:60,
    reps:'2 per side, lighter and quicker',load:'15–20 lb, one hand',
    cue:'Lighter bell this week — still own every checkpoint, just don\u2019t linger as long at each one.',
@@ -1511,10 +1515,10 @@ const WEEK_C=[
    reps:'Max reps, shorter rest between sets',load:'Bodyweight',
    cue:'Three rounds this week instead of two — end each set when the hips start to sag.',
    frames:[P.puTop,P.puBtm],anim:1,labels:['Top','Bottom']},
-  {name:'Two-arm dumbbell pullover',kit:'Adjustable dumbbells + bench',sets:3,work:55,rest:45,
-   reps:'18 per set',load:'25 lb (one dumbbell, both hands)',
-   cue:'Lighter weight, real burn through the lats by the last few reps — keep the tempo smooth, not rushed.',
-   frames:[P.pulloverTop,P.pulloverStretch],anim:1,labels:['Top','Stretch']}
+  {name:'Standing kettlebell pullover',kit:'Adjustable kettlebell',sets:3,work:55,rest:45,
+   reps:'18 per set',load:'15–20 lb, both hands',
+   cue:'Lighter weight, real burn through the lats by the last few reps — arms overhead, hinge and pull the bell down and back, keep the tempo smooth.',
+   frames:[P.kbPulloverTop,P.kbPulloverBtm],anim:1,labels:['Overhead','Hinged pull']}
  ]},
 {d:'Sat',t:'Full Body Circuit',s:'Circuit · Metabolic',watchMode:'High Intensity Interval Training',
  note:'An optional sixth day — a full-body metabolic finisher using kettlebell, medicine ball and vest work. By Saturday the squat and hinge days are well recovered, so this adds conditioning volume without competing with the week’s main lifts.',
@@ -1779,7 +1783,11 @@ function recenterPage(pw){
   const child=pw.firstElementChild;
   if(!child)return;
   const avail=pw.clientHeight, contentH=child.scrollHeight;
-  pw.style.paddingTop=Math.max(2,Math.round((avail-contentH-20)/2)+2)+'px';
+  // cap the top padding — the carousel viewport can be up to 90vh/860px tall,
+  // and a short card centered in all of that ends up sitting oddly low with a
+  // big dead gap above it. 64px is enough to feel intentionally nudged down,
+  // not glued to the top, without drifting toward the middle of the screen.
+  pw.style.paddingTop=Math.max(2,Math.min(64,Math.round((avail-contentH-20)/2)+2))+'px';
 }
 function recenterAllPages(){
   const track=main&&main.querySelector('.track');
@@ -1952,7 +1960,6 @@ const FITBOD={
   'Band shoulder prep':'loop-band-shoulder-external-rotation',
   'Barbell deadlift (Jayflex)':'deadlift',
   'Bent-over dumbbell row':'dumbbell-bent-over-row',
-  'Bent-over row':'bent-over-barbell-row',
   'Deadlift':'deadlift',
   'Dumbbell farmer carry':'farmer-s-carry',
   'Dumbbell reverse lunge':'reverse-lunge',
@@ -1976,7 +1983,6 @@ const FITBOD={
   'Medicine ball rotational twist':'medicine-ball-russian-twist',
   'Medicine ball thruster':'dumbbell-thruster',
   'Push-up finisher':'push-up',
-  'Two-arm dumbbell pullover':'dumbbell-pull-over',
   'Single-arm Romanian deadlift':'single-leg-romanian-deadlift',
   'Stability ball dead bug':'dead-bug',
   'Standing calf raise':'standing-dumbbell-calf-raise',
@@ -1986,7 +1992,6 @@ const FITBOD={
   'Suitcase carry':'single-arm-farmer-walk',
   'Turkish get-up':'turkish-get-up',
   'Turkish get-up (light)':'turkish-get-up',
-  'Weighted sit-up':'decline-sit-up',
 };
 
 function buildExerciseCard(x,i,total){
@@ -2007,7 +2012,6 @@ function buildExerciseCard(x,i,total){
     '</div>'+
     '<div class="meta-line">'+metaParts+'</div>';
   const fbSlug=FITBOD[x.name];
-  if(fbSlug)inner.insertAdjacentHTML('beforeend','<div style="margin-top:14px"><a class="watchform" target="_blank" rel="noopener" href="https://fitbod.me/exercises/'+fbSlug+'">Watch form ↗</a></div>');
 
   const cueWrap=document.createElement('div'); cueWrap.className='cue-wrap';
   cueWrap.innerHTML='<p class="cue">'+x.cue+'</p>';
@@ -2047,6 +2051,14 @@ function buildExerciseCard(x,i,total){
       sideBtn.setAttribute('aria-pressed','true'); frontBtn.setAttribute('aria-pressed','false');
     };
     inner.appendChild(vrow);
+  }
+
+  if(fbSlug){
+    const watchBtn=document.createElement('a');
+    watchBtn.className='watchform'; watchBtn.target='_blank'; watchBtn.rel='noopener';
+    watchBtn.href='https://fitbod.me/exercises/'+fbSlug;
+    watchBtn.textContent='Watch form ↗';
+    inner.appendChild(watchBtn);
   }
 
   const k=todayKey()+':'+S.day+':'+i;
