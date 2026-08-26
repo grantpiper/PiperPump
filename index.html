@@ -189,27 +189,26 @@ body.focus nav{max-height:0;opacity:0;padding-top:0;padding-bottom:0}
 .kit{display:block;font:600 12.5px/1 Inter,sans-serif;letter-spacing:.02em;
   text-transform:uppercase;color:var(--steel);margin-top:6px}
 
-/* hero weight+reps display — the ONE pairing that matters while you're standing
-   there holding the bell. Per reference-app audit (NTC/Fitbod/Hevy): during an
-   active set nothing else on the card should compete with this in size. Weight
-   is the hero; reps ride alongside at ~60% scale, same family. */
-.hero-stat{margin-top:8px;padding:9px 14px;border-radius:14px;
+/* hero sets+weight+reps display — the three numbers that matter while you're
+   standing there holding the bell, all in one pill instead of splitting sets
+   off into a separate small-print line. Per reference-app audit (NTC/Fitbod/
+   Hevy): during an active set nothing else on the card should compete with
+   this. Weight is the hero in the middle; sets and reps flank it at ~60%
+   scale, same family — still far more prominent than plain meta text. */
+.hero-stat{margin-top:10px;padding:12px 16px;border-radius:14px;
   background:linear-gradient(150deg,rgba(52,230,163,.16),rgba(52,230,163,.03));
-  border:1px solid rgba(52,230,163,.28);display:flex;align-items:stretch;gap:16px}
+  border:1px solid rgba(52,230,163,.28);display:flex;align-items:stretch;gap:14px}
 .hero-block{min-width:0;flex:1 1 0}
-.hero-block.sub{padding-left:16px;border-left:1px solid rgba(52,230,163,.22)}
+.hero-block+.hero-block{padding-left:14px;border-left:1px solid rgba(52,230,163,.22)}
+/* sets is always a 1-2 digit number — give it only the width it needs instead
+   of an equal third, so weight/reps (which can run to a full phrase) get
+   their room back and don't wrap into a tall ragged column. */
+.hero-block.sets{flex:0 0 auto;min-width:34px}
 .hero-k{font:800 10.5px/1 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
 .hero-v{font-family:'Anton',sans-serif;font-weight:400;
-  font-size:clamp(20px,5.4vw,36px);line-height:1.08;margin-top:5px;color:var(--signal);letter-spacing:.005em;
+  font-size:clamp(20px,5.4vw,36px);line-height:1.08;margin-top:6px;color:var(--signal);letter-spacing:.005em;
   word-break:break-word}
-.hero-block.sub .hero-v{font-size:clamp(16px,4vw,24px);color:var(--paper)}
-
-/* compact meta line — replaces the old chip row (sets/reps/rest/tempo each as
-   its own pill). One line of small text carries the same info with far less
-   visual weight; it's context, not a second hero. */
-.meta-line{font:700 13px/1.5 Inter,sans-serif;color:var(--steel);margin-top:8px}
-.meta-line b{color:var(--mist);font-weight:700}
-.meta-line span+span::before{content:"·";margin:0 7px;color:var(--line)}
+.hero-block.sub .hero-v{font-size:clamp(15px,3.6vw,22px);color:var(--paper)}
 
 .check{flex:0 0 auto;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);
   background:transparent;cursor:pointer;display:grid;place-items:center;margin-top:3px}
@@ -886,7 +885,7 @@ const WEEK_A=[
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
   {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:3,work:65,rest:45,
-   reps:'12 per side, curl straight into press',load:'20–25 lb, bottom-up grip',
+   reps:'12 per side',load:'20–25 lb, bottom-up grip',
    cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Curl to the shoulder, then press overhead in one continuous motion.',
    frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
@@ -1146,7 +1145,7 @@ const WEEK_B=[
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
   {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:2,work:55,rest:45,
-   reps:'10 per side, heavier, curl straight into press',load:'25–30 lb, bottom-up grip',
+   reps:'10 per side, heavier',load:'25–30 lb, bottom-up grip',
    cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Curl to the shoulder, then press overhead in one continuous motion.',
    frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
@@ -1406,7 +1405,7 @@ const WEEK_C=[
    cue:'Same bent-over hinge as the row, but sweep both arms out to the sides — rear delts and upper back, not the lats.',
    frames:[P.reverseFlyBtm,P.reverseFlyTop],anim:1,labels:['Hang','Open']},
   {name:'Crush Grip Curl + Press',kit:'Adjustable kettlebell',sets:3,work:70,rest:35,
-   reps:'15 per side, curl straight into press',load:'15–20 lb, bottom-up grip',
+   reps:'15 per side',load:'15–20 lb, bottom-up grip',
    cue:'Grip the horns, bell upside down — squeeze the whole time or it tips. Minimal rest between rounds this week.',
    frames:[P.kbCurlDown,P.kbOhpLock],anim:1,labels:['Curl start','Press lockout']}
  ]},
@@ -1997,20 +1996,18 @@ const FITBOD={
 function buildExerciseCard(x,i,total){
   const c=document.createElement('div'); c.className='ex';
   const inner=document.createElement('div'); inner.style.padding='16px 18px';
-  // one hero pairing — weight and reps, side by side, everything else drops to a
-  // single small meta line (sets/rest/tempo). No competing chip row anymore.
-  const metaParts=[
-    '<span><b>'+x.sets+'</b> sets</span>',
-    x.rest?'<span>Rest <b>'+fmt(x.rest)+'</b></span>':'',
-    x.tempo?'<span>Tempo <b>'+x.tempo+'</b></span>':''
-  ].filter(Boolean).join('');
+  // sets, weight and reps live together in one hero pill now — the three
+  // numbers you actually need mid-set. Rest and tempo (secondary, only
+  // relevant between/during a set, not a glance-at-a-glance number) dropped
+  // off the card entirely; tempo still gets called out in the cue text on
+  // the handful of exercises where it actually matters (e.g. goblet squat).
   inner.innerHTML='<div class="exlabel">'+String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0')+'</div>'+
     '<h3 class="hero-name">'+x.name+'</h3><span class="kit">'+x.kit+'</span>'+
     '<div class="hero-stat">'+
+      '<div class="hero-block sub sets"><div class="hero-k">Sets</div><div class="hero-v">'+x.sets+'</div></div>'+
       '<div class="hero-block"><div class="hero-k">Weight</div><div class="hero-v">'+x.load+'</div></div>'+
       '<div class="hero-block sub"><div class="hero-k">Reps</div><div class="hero-v">'+x.reps+'</div></div>'+
-    '</div>'+
-    '<div class="meta-line">'+metaParts+'</div>';
+    '</div>';
   const fbSlug=FITBOD[x.name];
 
   const cueWrap=document.createElement('div'); cueWrap.className='cue-wrap';
